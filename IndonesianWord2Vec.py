@@ -11,5 +11,5 @@ if __name__ == '__main__':
             ['disana', 'ada', 'jual', 'makanan', 'ringan', 'enak'], ['tidak', 'enak', 'kalau', 'masak', 'sendiri'],
             ['kutunggu', 'makanan', 'bergizi']]
 
-    wv = Word2Vec(sentences=data, min_count=1)
+    wv = Word2Vec(sentences=data, min_count=3)
     print(wv.most_similar('makan', topn=5))
