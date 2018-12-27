@@ -1,0 +1,29 @@
+Jakarta - Teror yang menyasar Harry Sufehmi, salah seorang konsultan IT Komisi Pemilihan Umum (KPU) memunculkan sejumlah pertanyaan.
+Pakar keamanan siber Alfons Tanujaya melihat teror ini seperti Distributed Denial of Service (DDoS) via ponsel.
+Dihubungi detikINET, Kamis (28/6/2018), Alfons berpendapat peristiwa IT KPU diteror mirip serangan DDoS itu bertujuan melumpuhkan nomor ponsel korban agar tidak bisa digunakan.
+"Sebenarnya tidak persis DDoS di komputer.
+Namun prinsip dasar yang dipakai sama, untuk melumpuhkan satu nomor untuk tujuan tertentu, maka nomor tersebut dihubungi berulang-ulang sampai pemilik nomornya menjadi sangat terganggu," kata Alfons yang berasal dari perusahaan keamanan Vaksincom.
+Alfons mencontohkan, pernah ada kasus peretas yang memang ingin menguasai sebuah nomor ponsel untuk fraud internet banking.
+Pelaku meneror dengan melakukan misscall berulang-ulang ke nomor yang disasarnya, karena nomor tersebut dijadikan sebagai nomor yang menerima Two Factor Authentication (TFA), yakni sistem pengamanan ganda untuk akun-akun layanan berbasis online.
+Lalu karena pemilik nomor merasa terganggu, dan celakanya memberikan reaksi yang salah, yakni menonaktifkan nomor tersebut dan menggantinya dengan nomor lain, peretas berhasil menguasai nomor korban.
+"Peretas memalsukan diri dengan kartu pengenal palsu sebagai pemilik nomor yang asli, menghubungi provider layanan seluler meminta nomornya direset dan berhasil menguasai nomor tersebut dan leluasa menguras dana tabungan yang diincarnya karena TFA-nya dikirim ke nomor yang sudah dikuasainya.
+Kira-kira begitu modusnya yang pernah terjadi," urai Alfons.
+Dia menduga, teror yang menyasar para pegawai IT KPU kemungkinan besar bertujuan untuk meretas akun Telegram dan WhatsApp korban.
+"Untungnya TFA diaktifkan.
+Jadi pengambilalihan tidak mudah terjadi," kata Alfons.
+Seperti diketahui, dalam kasus yang menimpa Harry, teror misscall terjadi pada Rabu malam sekitar pukul 24.
+00 WIB.
+Ketika itu, ada SMS masuk ke ponselnya.
+Isinya berupa kode otentikasi yang biasa digunakan untuk login ke sebuah layanan.
+Saat dicek, menurut Harry, ada hacker via Singapura yang baru saja masuk ke akun Telegram miliknya.
+Herry pun langsung memutuskan koneksi.
+Alhasil, usaha peretasan ke akun Telegram ini tidak berhasil karena dirinya mengaktifkan fitur TFA di Telegram.
+"Ini terorganisir dan terencana.
+Jelas terkait Pilkada.
+Kemungkinan yang mencoba meretas setidaknya pernah saling kenal karena bisa tahu nomor telepon hampir semua petugas KPU," duga Alfons.
+Sebelumnya diberitakan, pasca Pilkada serentak yang berlangsung kemarin (27/6/2018), Harry dibombardir misscall aneh.
+Tak hanya sekali, misscall tersebut berlangsung hingga ratusan.
+Menurut Harry, teror misscall ini rata-rata menggunakan nomor dengan awalan +100, di mana angka tersebut belum diketahui kode negara mana.
+Menurut penuturan Harry, bukan hanya dia yang mendapatkan teror misscall aneh seperti ini.
+Diungkapkan dia, hampir semua personil tim IT KPU mendapatkan kejadian serupa yang dialaminya.
+"Nyaris semua personil tim IT KPU kena bombardir dan usaha hacking Telegram ini," sebutnya.

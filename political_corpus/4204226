@@ -1,0 +1,29 @@
+e-Flash                     Gombalan Maut Netizen demi Merebut Hati Anak Ridwan Kamil                 Ridwan Kamil sempat memposting sayembara pantun rayuan untuk mencari jodoh bagi anaknya, Emmeril K Mumtadz.
+Seperti ini nih gombalan netizen untuk Emmeril.
+.
+.
+iframe embed telah tercopy 	var article = {         idkanal: 160301456    }     setTimeout(function(){     	shareBox.
+run($('.
+share-box'));     },500);     function copyToClipboard() {         var text = '<iframe src="https://20.
+detik.
+com/embed/180909024" frameborder="0" width="420" scrolling="no" allowfullscreen="true" height="236"></iframe>';         if (window.
+clipboardData && window.
+clipboardData.
+setData) {             // IE specific code path to prevent textarea being shown while dialog is visible.
+return clipboardData.
+setData("Text", text);         } else if (document.
+queryCommandSupported && document.
+queryCommandSupported("copy")) {             var textarea = document.
+createElement("textarea");             textarea.
+textContent = text;             textarea.
+style.
+position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
+document.
+body.
+appendChild(textarea);             textarea.
+select();             try {                 return document.
+execCommand("copy");  // Security exception may be thrown by some browsers.
+} catch (ex) {                 console.
+warn("Copy to clipboard failed.
+", ex);                 return false;             } finally {                 document.
+body.
