@@ -1,28 +1,44 @@
 import os
 import nltk
+import pickle
 from gensim.models import Word2Vec
-from nltk.corpus import movie_reviews
 
-# b = Word2Vec(brown.sents())
-# mr = Word2Vec(movie_reviews.sents())
-# t = Word2Vec(treebank.sents())
 
-if __name__ == '__main__':
-    # data = [['teamsar', 'muliadi', 'hobi', 'makan', 'nasi', 'remes'],
-    #         ['angga', 'sanjaya', 'lingga', 'makan', 'tahu', 'isi'],
-    #         ['disana', 'ada', 'jual', 'makanan', 'ringan', 'enak'], ['tidak', 'enak', 'kalau', 'masak', 'sendiri'],
-    #         ['kutunggu', 'makanan', 'bergizi']]
-    data = []
-    for root, dirs, files in os.walk("..\SNS\political_corpus\\"):
-        for file in files:
-            if not file.endswith(".py") and not file.endswith(".txt"):
-                f = open(os.path.join(root, file), 'r', encoding='utf8')
-                lines = f.readlines()
-                for line in lines:
-                    tokens = nltk.word_tokenize(line)
-                    data.append(tokens)
-                # print(os.path.join(root, file))
+class IndonesianWord2Vec:
+    def __init__(self, sentences=None, size=100, alpha=0.025, window=5, min_count=5,
+                 max_vocab_size=None, sample=1e-3, seed=1, workers=3, min_alpha=0.0001,
+                 sg=0, hs=0, negative=5, cbow_mean=1, retrain=False):
+        self.sentences = sentences
+        self.size = size
+        self.alpha = alpha
+        self.window = window
+        self.min_count = min_count
+        self.max_vocab_size = max_vocab_size
+        self.sample = sample
+        self.seed = seed
+        self.workers = workers
+        self.min_alpha = min_alpha
+        self.sg = sg
+        self.hs = hs
+        self.negative = negative
+        self.cbow_mean = cbow_mean
+        self.retrain = retrain
 
-    wv = Word2Vec(sentences=data, min_count=2)
-    print(wv['pencurian'], wv.most_similar('pencurian'))
-    # print(wv['makan'], wv.most_similar('makan'))
+    def retrain_word2vec(self):
+        if self.retrain:
+            data = []
+            for root, dirs, files in os.walk('..\\SNS\\political_corpus\\'):
+                for file in files:
+                    if not file.endswith(".py") and not file.endswith(".txt"):
+                        f = open(os.path.join(root, file), 'r', encoding='utf8')
+                        lines = f.readlines()
+                        for line in lines:
+                            tokens = nltk.word_tokenize(line)
+                            data.append(tokens)
+            wv = Word2Vec(sentences=data, min_count=self.min_count)
+            with open('..\\SNS\\saved_model\\indonesian_word2vec_saved_model.pickle', 'wb') as pickle_file:
+                pickle.dump(wv, pickle_file)
+            return wv
+        else:
+            with open('..\\SNS\\saved_model\\indonesian_word2vec_saved_model.pickle', 'rb') as pickle_file:
+                return pickle.load(pickle_file)
