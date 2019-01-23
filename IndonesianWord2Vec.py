@@ -35,7 +35,10 @@ class IndonesianWord2Vec:
                         for line in lines:
                             tokens = nltk.word_tokenize(line)
                             data.append(tokens)
-            wv = Word2Vec(sentences=data, min_count=self.min_count)
+            wv = Word2Vec(sentences=data, min_count=self.min_count, size=self.size, alpha=self.alpha,
+                          window=self.window, max_vocab_size=self.max_vocab_size, sample=self.sample,
+                          seed=self.seed, workers=self.workers, min_alpha=self.min_alpha, sg=self.sg,
+                          hs=self.hs, negative=self.negative, cbow_mean=self.cbow_mean)
             with open('..\\SNS\\saved_model\\indonesian_word2vec_saved_model.pickle', 'wb') as pickle_file:
                 pickle.dump(wv, pickle_file)
             return wv
