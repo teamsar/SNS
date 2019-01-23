@@ -4,18 +4,20 @@ import pickle
 import keras
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as plt
 from IndonesianWord2Vec import IndonesianWord2Vec
 from numpy import array_equal
 from attention_decoder import AttentionDecoder
 from keras.models import Sequential
 from keras.layers import LSTM
+from keras.utils.vis_utils import plot_model
 
 
 # prepare data for the LSTM
 def get_pair(n_in, n_out, tokens):
     sequence_in = tokens
     sequence_out = np.concatenate((sequence_in[:n_out],
-                                   [[0 for _ in range(100)] for _ in range(n_in - n_out)]), axis=0)
+                                   [[0 for _ in range(tokens.shape[1])] for _ in range(n_in - n_out)]), axis=0)
 
     X = sequence_in
     y = sequence_out
@@ -101,17 +103,18 @@ def get_word_vector(wv, data, size_output_vector_per_token):
 
 if __name__ == '__main__':
     # configure problem
-    size_output_vector_per_token = 100
+    size_output_vector_per_token = 50
     min_token_in_sentence = 5
     n_features = size_output_vector_per_token
     n_timesteps_in = min_token_in_sentence
     n_timesteps_out = 2
+    min_word_occurences = 20
 
     config = tf.ConfigProto(device_count={'GPU': 1, 'CPU': 1})
     sess = tf.Session(config=config)
     keras.backend.set_session(sess)
 
-    wv = IndonesianWord2Vec(retrain=True, min_count=3,
+    wv = IndonesianWord2Vec(retrain=False, min_count=min_word_occurences,
                             size=size_output_vector_per_token).retrain_word2vec()
 
     data = get_train_data(min_token_in_sentence=min_token_in_sentence)
@@ -120,16 +123,23 @@ if __name__ == '__main__':
     with tf.device('/gpu:0'):
         # define model
         model = Sequential()
-        model.add(LSTM(150, input_shape=(n_timesteps_in, n_features), return_sequences=True))
-        model.add(AttentionDecoder(150, n_features))
-        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
+        model.add(LSTM(500, input_shape=(n_timesteps_in, n_features), return_sequences=True))
+        model.add(LSTM(500, input_shape=(n_timesteps_in, n_features), return_sequences=True))
+        model.add(AttentionDecoder(500, n_features))
+        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=["accuracy"])
+        plot_model(model, to_file='..\\SNS\\graph\\model_plot.png', show_shapes=True, show_layer_names=True)
+        print(model.summary())
 
         # train LSTM
         for tokens in data:
             # generate new random sequence
             X, y = get_pair(n_timesteps_in, n_timesteps_out, tokens)
             # fit model for one epoch on this sequence
-            model.fit(X, y, epochs=1, verbose=2)
+            history = model.fit(X, y, epochs=10, verbose=1, batch_size=30)
+
+            # save model
+            with open('..\\SNS\\saved_model\\seq2seq_with_attention_model.pickle', 'wb') as pickle_file:
+                pickle.dump(model, pickle_file)
 
         # evaluate LSTM
         validation_data = get_test_data(min_token_in_sentence=min_token_in_sentence)
